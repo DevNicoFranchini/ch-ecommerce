@@ -1,8 +1,8 @@
 import os from 'os';
 import cluster from 'cluster';
 
-import { options } from './config/config.js';
 import { app } from './app.js';
+import { options } from './config/config.js';
 
 const PORT = options.server.port;
 const MODE = options.server.mode;
