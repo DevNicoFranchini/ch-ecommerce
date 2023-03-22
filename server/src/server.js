@@ -10,7 +10,7 @@ const MODE = options.server.mode;
 // EXPRESS SERVER
 
 if (MODE === 'CLUSTER' && cluster.isPrimary) {
-	const numCPUS = os.cpus().length; // CPU CORES
+	const numCPUS = os.cpus().length;
 
 	for (let i = 0; i < numCPUS; i++) {
 		cluster.fork();
@@ -22,7 +22,7 @@ if (MODE === 'CLUSTER' && cluster.isPrimary) {
 } else {
 	const server = app.listen(PORT, () =>
 		console.log(
-			`Freddy, el servidor está corriendo en el puerto ${PORT} en el proceso ${process.pid}`
+			`Freddy, el servidor está corriendo en el puerto "${PORT}" en el proceso "${process.pid}"`
 		)
 	);
 	server.on('error', (error) =>
