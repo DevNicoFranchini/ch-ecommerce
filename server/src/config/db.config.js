@@ -7,8 +7,9 @@ import { options } from './options.config.js';
 // DB CONNECTION
 
 class UserDB {
-	constructor(url) {
+	constructor(url, dbname) {
 		this.url = url;
+		this.dbname = dbname;
 	}
 
 	async connect() {
@@ -17,7 +18,7 @@ class UserDB {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
 			});
-			console.log('Conexión a la base de datos de manera exitosa');
+			console.log(`Conexión a la base de datos "${this.dbname}" de manera exitosa`);
 		} catch (error) {
 			console.error(`Hubo un error conectándose a la base. El error es: ${error}`);
 		}
