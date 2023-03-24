@@ -46,7 +46,7 @@ const sessionDB = (app) => {
 			}),
 			secret: 'claveSecreta',
 			resave: false,
-			saveUninitialized: true,
+			saveUninitialized: false,
 		})
 	);
 };
