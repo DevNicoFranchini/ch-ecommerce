@@ -2,7 +2,7 @@ import os from 'os';
 import cluster from 'cluster';
 
 import { app } from './app.js';
-import { logger } from './utils/logs/logger.js';
+import { logger } from './logs/logger.js';
 import { options } from './config/options.config.js';
 import { UserDB, sessionDB } from './config/db.config.js';
 
@@ -20,7 +20,7 @@ if (MODE === 'CLUSTER' && cluster.isPrimary) {
 	}
 
 	cluster.on('exit', (worker) => {
-		logger.warn(`EL PROCESO "${worker.id}" TUVO UN FALLO.`)
+		logger.warn(`EL PROCESO "${worker.id}" TUVO UN FALLO.`);
 		cluster.fork();
 	});
 } else {

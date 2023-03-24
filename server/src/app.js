@@ -9,7 +9,7 @@ import cors from 'cors';
 // import { normalize, schema } from 'normalizr';
 
 import { apiRouter } from './routes/index.routes.js';
-import { logger, infoLogger } from './utils/logs/logger.js';
+import { logger, infoLogger } from './logs/logger.js';
 // import { MessagesContainer } from './controllers/messages.controller.js';
 
 // import {
@@ -43,7 +43,6 @@ app.use(infoLogger);
 // serializeUser();
 // deserializeUser();
 
-
 // ROUTES
 
 app.use('/', apiRouter);
@@ -52,9 +51,6 @@ app.get('*', (req, res) => {
 });
 
 // const messagesApi = new MessagesContainer('./src/files/messages.txt');
-
-
-
 
 // Normalización
 // const authorSchema = new schema.Entity('authors', {});
