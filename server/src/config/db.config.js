@@ -3,7 +3,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
 import { options } from './options.config.js';
-import { logger } from '../logs/logger.js';
+import { logger } from './../logs/logger.js';
 
 // DB CONNECTION
 
