@@ -20,7 +20,7 @@ const loginStrategy = () => {
 	passport.use(
 		'login',
 		new LocalStrategy(async (username, password, done) => {
-			console.log('ENTREEE');
+			logger.info("NUEVO INICIO DE SESION")
 			let user = await UserModel.findOne({ email: username });
 
 			if (!user) {
@@ -65,6 +65,8 @@ const signupStrategy = () => {
 
 				await newUser.save();
 
+				logger.info("NUEVO REGISTRO")
+
 				return done(null, req.body);
 			}
 		)
@@ -78,7 +80,7 @@ const serializeUser = () => {
 		process.nextTick(function () {
 			return cb(null, {
 				id: user['_id'],
-				username: user.username,
+				username: user.email,
 			});
 		});
 	});
