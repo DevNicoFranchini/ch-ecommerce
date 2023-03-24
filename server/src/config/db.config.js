@@ -3,6 +3,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
 import { options } from './options.config.js';
+import { logger } from './../utils/logs/logger.js';
 
 // DB CONNECTION
 
@@ -18,18 +19,18 @@ class UserDB {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
 			});
-			console.log(`Conexión a la base de datos "${this.dbname}" de manera exitosa`);
+			logger.info(`CONEXIÓN A LA BASE DE DATOS "${this.dbname}" DE MANERA EXITOSA`);
 		} catch (error) {
-			console.error(`Hubo un error conectándose a la base. El error es: ${error}`);
+			logger.warn(`HUBO UN ERROR CONECTÁNDOSE A LA BASE. EL ERROR ES: ${error}`);
 		}
 	}
 
 	async disconnect() {
 		try {
 			await mongoose.disconnect();
-			console.log('Desconexión de la base de datos de manera exitosa');
+			logger.info('DESCONEXIÓN DE LA BASE DE DATOS DE MANERA EXITOSA');
 		} catch (error) {
-			console.error(`Hubo un error desconectándose de la base. El error es: ${error}`);
+			logger.warn(`HUBO UN ERROR DESCONECTÁNDOSE DE LA BASE. EL ERROR ES: ${error}`);
 		}
 	}
 }
@@ -42,7 +43,7 @@ const sessionDB = (app) => {
 			store: MongoStore.create({
 				mongoUrl: options.mongodb.mongosessions,
 				mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
-                // collectionName: 'test',
+				// collectionName: 'test',
 			}),
 			secret: 'claveSecreta',
 			resave: false,

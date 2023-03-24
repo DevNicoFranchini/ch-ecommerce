@@ -9,7 +9,7 @@ import cors from 'cors';
 // import { normalize, schema } from 'normalizr';
 
 import { apiRouter } from './routes/index.routes.js';
-// import { logger } from './../logs/logger.js';
+import { logger, infoLogger } from './utils/logs/logger.js';
 // import { MessagesContainer } from './controllers/messages.controller.js';
 
 // import {
@@ -36,25 +36,25 @@ app.use(
 // app.use(passport.initialize());
 // app.use(passport.session());
 
+app.use(infoLogger);
+
 // loginStrategy();
 // signupStrategy();
 // serializeUser();
 // deserializeUser();
 
+
+// ROUTES
+
 app.use('/', apiRouter);
+app.get('*', (req, res) => {
+	logger.warn(`RUTA: ${req.path} INEXISTENTE. PETICION: ${req.method}`);
+});
 
 // const messagesApi = new MessagesContainer('./src/files/messages.txt');
 
-// Logger
-// const infoLogger = (req, res, next) => {
-// 	logger.info(`ruta : ${req.path}, peticion : ${req.method}`);
-// 	next();
-// };
 
-// app.use(infoLogger);
-// app.get('/*', (req, res) => {
-// 	logger.warn(`Ruta: ${req.path} inexistente. Peticion: ${req.method}`);
-// });
+
 
 // Normalización
 // const authorSchema = new schema.Entity('authors', {});

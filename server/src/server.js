@@ -1,10 +1,10 @@
 import os from 'os';
 import cluster from 'cluster';
 
-import { UserDB, sessionDB } from './config/db.config.js';
-
 import { app } from './app.js';
+import { logger } from './utils/logs/logger.js';
 import { options } from './config/options.config.js';
+import { UserDB, sessionDB } from './config/db.config.js';
 
 const PORT = options.server.port;
 const MODE = options.server.mode;
@@ -20,22 +20,23 @@ if (MODE === 'CLUSTER' && cluster.isPrimary) {
 	}
 
 	cluster.on('exit', (worker) => {
+		logger.warn(`EL PROCESO "${worker.id}" TUVO UN FALLO.`)
 		cluster.fork();
 	});
 } else {
 	const server = app.listen(PORT, () =>
-		console.log(
-			`Freddy, el servidor está corriendo en el puerto "${PORT}" en el proceso "${process.pid}"`
+		logger.info(
+			`FREDDY, EL SERVIDOR ESTÁ CORRIENDO EN EL PUERTO "${PORT}" EN EL PROCESO "${process.pid}"`
 		)
 	);
 	server.on('error', (error) =>
-		console.log(`Hubo un problema en el servidor. El error es: ${error}`)
+		logger.warn(`HUBO UN PROBLEMA EN EL SERVIDOR. EL ERROR ES: ${error}`)
 	);
 }
 
 // DB CONNECTION
 
-new UserDB(mongoDBUrl, 'Usuarios').connect();
+new UserDB(mongoDBUrl, 'USUARIOS').connect();
 
 // SESSION CONNECTION
 
