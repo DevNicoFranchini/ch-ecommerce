@@ -36,7 +36,7 @@ if (MODE === 'CLUSTER' && cluster.isPrimary) {
 
 // DB CONNECTION
 
-new UserDB(mongoDBUrl, 'USUARIOS').connect();
+// new UserDB(mongoDBUrl, 'USUARIOS').connect();
 
 // SESSION CONNECTION
 
