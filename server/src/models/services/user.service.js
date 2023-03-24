@@ -15,6 +15,10 @@ export const getUsersById = async (id) => {
 	return await UserDaoContainer.getById(id);
 };
 
+export const updateById = async (body, id) => {
+	return await UserDaoContainer.updateById(body, id);
+};
+
 export const deleteUsers = async () => {
 	return await UserDaoContainer.deleteAll();
 };
