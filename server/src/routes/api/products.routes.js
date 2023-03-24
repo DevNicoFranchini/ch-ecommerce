@@ -1,32 +1,98 @@
 import express from 'express';
-// import faker from 'faker';
+// import ProductsContainer from './../services/productsContainer.js';
 
+// import { isAdmin } from './../middleware/profile.js';
+// import { completeData } from './../middleware/validations.js';
+
+// const productsContainer = new ProductsContainer('products.json');
 const router = express.Router();
-// const { datatype, commerce, image } = faker;
 
-// faker.locale = 'es';
-
-// Home products
-router.get('/', (req, res) => {
-	res.send('Test products');
-});
-
-// router.get('/randoms', (req, res) => {
+// router.get('/', async (req, res, next) => {
 // 	try {
-// 		let products = [];
-
-// 		for (let i = 0; i < 5; i++) {
-// 			products.push({
-// 				id: datatype.uuid(),
-// 				title: commerce.productName(),
-// 				price: commerce.price(),
-// 				thumbnail: image.image(),
+// 		const products = await productsContainer.getAll();
+// 		if (products) {
+// 			return res.status(200).json({
+// 				error: false,
+// 				status: 200,
+// 				body: products,
+// 			});
+// 		} else {
+// 			res.status(404).json({
+// 				error: true,
+// 				stauts: 404,
+// 				body: "Sorry. The file you are looking for doesn't exist",
 // 			});
 // 		}
+// 	} catch (err) {
+// 		next(err);
+// 	}
+// });
 
-// 		res.render('products', { products: products });
-// 	} catch (error) {
-// 		res.status(500).send('Se produjo un error en el servidor :(');
+// router.get('/:id', async (req, res, next) => {
+// 	try {
+// 		const { id } = req.params;
+// 		const product = await productsContainer.getById(id);
+
+// 		if (product) {
+// 			return res.status(200).json({
+// 				error: false,
+// 				status: 200,
+// 				body: product,
+// 			});
+// 		} else {
+// 			res.status(404).json({
+// 				error: true,
+// 				stauts: 404,
+// 				body: "Sorry. The product you are looking for doesn't exist",
+// 			});
+// 		}
+// 	} catch (err) {
+// 		next(err);
+// 	}
+// });
+
+// router.post('/', isAdmin, completeData, async (req, res, next) => {
+// 	try {
+// 		const data = req.body;
+// 		const newProduct = await productsContainer.save(data);
+
+// 		return res.status(200).json({
+// 			error: false,
+// 			status: 201,
+// 			body: data,
+// 		});
+// 	} catch (err) {
+// 		next(err);
+// 	}
+// });
+
+// router.delete('/:id', isAdmin, async (req, res, next) => {
+// 	try {
+// 		const id = req.params.id;
+// 		await productsContainer.delete(id);
+// 		return res.status(200).json({
+// 			error: false,
+// 			status: 200,
+// 			body: id,
+// 		});
+// 	} catch (err) {
+// 		next(err);
+// 	}
+// });
+
+// router.put('/:id', isAdmin, async (req, res, next) => {
+// 	try {
+// 		const id = req.params.id;
+// 		const data = req.body;
+// 		const product = await productsContainer.updateById(id, data);
+
+// 		return res.status(200).json({
+// 			error: false,
+// 			status: 200,
+// 			body: product,
+// 		});
+// 	} catch (err) {
+// 		next(err);
 // 	}
 // });
 

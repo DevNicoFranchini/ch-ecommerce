@@ -1,88 +1,90 @@
 import express from 'express';
-// import passport from 'passport';
+import passport from 'passport';
 import os from 'os';
 
-// import {
-// 	loginStrategy,
-// 	signupStrategy,
-// 	serializeUser,
-// 	deserializeUser,
-// } from '../../persistence/passport/passport.js';
+import {
+	loginStrategy,
+	signupStrategy,
+	serializeUser,
+	deserializeUser,
+} from './../../models/passport/passport.js';
 
-// loginStrategy();
-// signupStrategy();
-// serializeUser();
-// deserializeUser();
+import { logger } from './../../logs/logger.js';
+
+loginStrategy();
+signupStrategy();
+serializeUser();
+deserializeUser();
 
 const router = express.Router();
 
-// Home users
-router.get('/', (req, res) => {
-	res.send('Test users');
+// SIGNUP
+
+router.get('/signup', (req, res) => {
+	if (req.isAuthenticated()) {
+		res.redirect('/api');
+	} else {
+		res.render('signup');
+	}
 });
 
-// Signup
-// router.get('/signup', (req, res) => {
-// 	if (req.isAuthenticated()) {
-// 		res.redirect('/api');
-// 	} else {
-// 		res.render('signup');
-// 	}
-// });
+router.post(
+	'/signup',
+	passport.authenticate('signup', {
+		successRedirect: '/api',
+		failureRedirect: '/api/users/signupError',
+	}),
+	(req, res) => {
+		res.redirect('/api');
+	}
+);
 
-// router.post(
-// 	'/signup',
-// 	passport.authenticate('signup', {
-// 		successRedirect: '/api',
-// 		failureRedirect: '/api/users/signupError',
-// 	}),
-// 	(req, res) => {
-// 		res.redirect('/api');
-// 	}
-// );
+// SIGNUP ERROR
 
-// Signup error
-// router.get('/signupError', (req, res) => {
-// 	res.render('signupError');
-// });
+router.get('/signupError', (req, res) => {
+	res.render('signupError');
+});
 
-// Login
-// router.get('/login', (req, res) => {
-// 	if (req.isAuthenticated()) {
-// 		res.redirect('/api');
-// 	} else {
-// 		res.render('login');
-// 	}
-// });
+// LOGIN
 
-// router.post(
-// 	'/login',
-// 	passport.authenticate('login', {
-// 		successRedirect: '../',
-// 		failureRedirect: '/api/users/loginError',
-// 	}),
-// 	(req, res) => {
-// 		res.redirect('/api');
-// 	}
-// );
+router.get('/login', (req, res) => {
+	if (req.isAuthenticated()) {
+		res.redirect('/api');
+	} else {
+		res.render('login');
+	}
+});
 
-// Login error
-// router.get('/loginError', (req, res) => {
-// 	res.render('loginError');
-// });
+router.post(
+	'/login',
+	passport.authenticate('login', {
+		successRedirect: '../',
+		failureRedirect: '/api/users/loginError',
+	}),
+	(req, res) => {
+		res.redirect('/api');
+	}
+);
 
-// Logout
-// router.get('/logout', (req, res) => {
-// 	const username = req.session.passport.user.username;
-// 	req.logout((err) => {
-// 		if (err) {
-// 			console.log(err);
-// 			return res.send('Hubo un error al cerrar sesión');
-// 		}
-// 		req.session.destroy();
-// 		res.render('logout', { username });
-// 	});
-// });
+// LOGIN ERROR
+
+router.get('/loginError', (req, res) => {
+	res.render('loginError');
+});
+
+// LOGOUT
+
+router.get('/logout', (req, res) => {
+	const username = req.session.passport.user.username;
+	req.logout((err) => {
+		if (err) {
+			logger.warn(err);
+			return res.send('Hubo un error al cerrar sesión');
+		}
+		req.session.destroy();
+		res.render('logout', { username });
+	});
+});
 
 // Info
 // const info = {
