@@ -8,7 +8,7 @@ import { UserDB, sessionDB } from './config/db.config.js';
 
 const PORT = options.server.port;
 const MODE = options.server.mode;
-const mongoDBUrl = options.mongodb.mongousers;
+const mongoDBUrl = options.mongodb.mongourl;
 
 // EXPRESS SERVER CONNECTION
 

@@ -24,15 +24,9 @@ export const options = {
 		dbType: process.env.DB_TYPE || 'MONGO',
 	},
 	mongodb: {
-		mongousers:
-			objArgs.env === 'TEST' ? process.env.USERS_TEST : process.env.USERS,
+		mongourl:
+			objArgs.env === 'TEST' ? process.env.CH_BACKEND_TEST : process.env.CH_BACKEND,
 		mongosessions:
 			objArgs.env === 'TEST' ? process.env.SESSIONS_TEST : process.env.SESSIONS,
-		mongoproducts:
-			objArgs.env === 'TEST' ? process.env.PRODUCTS_TEST : process.env.PRODUCTS,
-		mongocarts:
-			objArgs.env === 'TEST' ? process.env.CARTS_TEST : process.env.CARTS,
-		mongoorders:
-			objArgs.env === 'TEST' ? process.env.ORDERS_TEST : process.env.ORDERS,
 	},
 };

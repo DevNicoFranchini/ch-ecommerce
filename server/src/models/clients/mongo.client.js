@@ -11,7 +11,7 @@ class MyMongoClient {
 	async connect() {
 		try {
 			this.client.set('strictQuery', false);
-			await this.client.connect(options.mongodb.mongousers, {
+			await this.client.connect(options.mongodb.mongourl, {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
 			});
