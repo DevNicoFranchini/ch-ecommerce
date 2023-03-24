@@ -3,8 +3,8 @@ import express from 'express';
 // import passport from 'passport';
 
 import cookieParser from 'cookie-parser';
-// import compression from 'compression';
-// import cors from 'cors';
+import compression from 'compression';
+import cors from 'cors';
 
 // import { normalize, schema } from 'normalizr';
 
@@ -24,14 +24,14 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(compression());
+app.use(compression());
 app.use(cookieParser());
-// app.use(
-// 	cors({
-// 		origin: 'http://localhost:8080',
-// 		methods: ['GET'],
-// 	})
-// );
+app.use(
+	cors({
+		origin: 'http://localhost:8080',
+		methods: ['GET'],
+	})
+);
 
 // app.use(passport.initialize());
 // app.use(passport.session());
