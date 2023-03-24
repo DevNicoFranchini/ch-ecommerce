@@ -1,28 +1,35 @@
 import express from 'express';
-
-// import passport from 'passport';
-
+import handlebars from 'express-handlebars';
+import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 
-// import { normalize, schema } from 'normalizr';
-
+import { URL } from 'url';
+import { sessionDB } from './config/db.config.js';
 import { apiRouter } from './routes/index.routes.js';
 import { logger, infoLogger } from './logs/logger.js';
-// import { MessagesContainer } from './controllers/messages.controller.js';
 
-// import {
-// 	signupStrategy,
-// 	loginStrategy,
-// 	serializeUser,
-// 	deserializeUser,
-// } from './persistence/passport/passport.js';
+import {
+	signupStrategy,
+	loginStrategy,
+	serializeUser,
+	deserializeUser,
+} from './models/passport/passport.js';
 
 const app = express();
+const __dirname = new URL('.', import.meta.url).pathname;
+
+// SESSION CONNECTION
+
+sessionDB(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + './public'));
 
 app.use(compression());
 app.use(cookieParser());
@@ -33,52 +40,25 @@ app.use(
 	})
 );
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.engine('hbs', handlebars.engine({ extname: 'hbs' }));
+app.set('views', './src/public/views');
+app.set('view engine', 'hbs');
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(infoLogger);
 
-// loginStrategy();
-// signupStrategy();
-// serializeUser();
-// deserializeUser();
+loginStrategy();
+signupStrategy();
+serializeUser();
+deserializeUser();
 
 // ROUTES
 
-app.use('/', apiRouter);
+app.use('/api', apiRouter);
 app.get('*', (req, res) => {
 	logger.warn(`RUTA: ${req.path} INEXISTENTE. PETICION: ${req.method}`);
 });
-
-// const messagesApi = new MessagesContainer('./src/files/messages.txt');
-
-// Normalización
-// const authorSchema = new schema.Entity('authors', {});
-// const msgSchema = new schema.Entity('mensajes', { author: authorSchema });
-// const chatSchema = new schema.Entity(
-// 	'chat',
-// 	{
-// 		mensajes: [msgSchema],
-// 	},
-// 	{ idAttribute: 'id' }
-// );
-
-// Aplicar la normalización
-// const normalizeData = (data) => {
-// 	const normalizedData = normalize(
-// 		{
-// 			id: 'chatHistory',
-// 			mensajes: data,
-// 		},
-// 		chatSchema
-// 	);
-// 	return normalizedData;
-// };
-
-// const normalizeMessages = async () => {
-// 	const results = await messagesApi.getAll();
-// 	const normalizedMsgs = normalizeData(results);
-// 	return normalizedMsgs;
-// };
 
 export { app };
