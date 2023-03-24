@@ -4,11 +4,10 @@ import cluster from 'cluster';
 import { app } from './app.js';
 import { logger } from './logs/logger.js';
 import { options } from './config/options.config.js';
-import { UserDB, sessionDB } from './config/db.config.js';
+
 
 const PORT = options.server.port;
 const MODE = options.server.mode;
-const mongoDBUrl = options.mongodb.mongourl;
 
 // EXPRESS SERVER CONNECTION
 
@@ -34,10 +33,4 @@ if (MODE === 'CLUSTER' && cluster.isPrimary) {
 	);
 }
 
-// DB CONNECTION
 
-// new UserDB(mongoDBUrl, 'USUARIOS').connect();
-
-// SESSION CONNECTION
-
-sessionDB(app);
