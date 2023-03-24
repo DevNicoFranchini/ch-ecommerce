@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser';
 // import compression from 'compression';
 // import cors from 'cors';
 
-import { URL } from 'url';
 // import { normalize, schema } from 'normalizr';
 
 import { apiRouter } from './routes/index.routes.js';
@@ -21,11 +20,9 @@ import { apiRouter } from './routes/index.routes.js';
 // } from './persistence/passport/passport.js';
 
 const app = express();
-const __dirname = new URL('.', import.meta.url).pathname;
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(__dirname + './public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // app.use(compression());
 app.use(cookieParser());
@@ -35,12 +32,6 @@ app.use(cookieParser());
 // 		methods: ['GET'],
 // 	})
 // );
-
-// app.engine('hbs', handlebars.engine({ extname: 'hbs' }));
-// app.set('views', './src/public/views');
-// app.set('view engine', 'hbs');
-
-// sessionDB(app);
 
 // app.use(passport.initialize());
 // app.use(passport.session());
