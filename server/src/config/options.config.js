@@ -22,11 +22,9 @@ export const options = {
 		mode: objArgs.mode,
 		node_env: objArgs.env,
 		dbType: process.env.DB_TYPE || 'MONGO',
+		admin: process.env.MAIL || false,
 	},
 	mongodb: {
-		mongourl:
-			objArgs.env === 'TEST' ? process.env.CH_BACKEND_TEST : process.env.CH_BACKEND,
-		mongosessions:
-			objArgs.env === 'TEST' ? process.env.SESSIONS_TEST : process.env.SESSIONS,
+		mongourl: objArgs.env === 'TEST' ? process.env.CH_BACKEND_TEST : process.env.CH_BACKEND,
 	},
 };
