@@ -90,5 +90,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/all-users', isAdmin, UserController.getUsersController);
+router.post('/new-user', isAdmin, UserController.saveUserController);
+router.post('/update-user/:id', isAdmin, UserController.updateUserController);
 
 export { router as UserRouter };
