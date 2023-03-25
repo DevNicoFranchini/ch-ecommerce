@@ -26,9 +26,6 @@ sessionDB(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + './public'));
 
 app.use(compression());
@@ -59,6 +56,7 @@ deserializeUser();
 app.use('/api', apiRouter);
 app.get('*', (req, res) => {
 	logger.warn(`RUTA: ${req.path} INEXISTENTE. PETICION: ${req.method}`);
+	res.redirect('/api');
 });
 
 export { app };
