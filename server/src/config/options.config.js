@@ -27,4 +27,8 @@ export const options = {
 	mongodb: {
 		mongourl: objArgs.env === 'TEST' ? process.env.CH_BACKEND_TEST : process.env.CH_BACKEND,
 	},
+	nodemailer: {
+		mail: process.env.MAIL,
+		pass: process.env.MAIL_PASS,
+	},
 };

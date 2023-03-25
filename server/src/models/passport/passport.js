@@ -5,6 +5,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 
 import { logger } from './../../logs/logger.js';
 import { UserModel } from './../db/user.model.js';
+import { sendMail } from './../../utils/nodemailer.js';
 
 const isValidPassword = (user, password) => {
 	return bCrypt.compareSync(password, user.password);
@@ -20,7 +21,7 @@ const loginStrategy = () => {
 	passport.use(
 		'login',
 		new LocalStrategy(async (username, password, done) => {
-			logger.info("NUEVO INICIO DE SESION")
+			logger.info('NUEVO INICIO DE SESION');
 			let user = await UserModel.findOne({ email: username });
 
 			if (!user) {
@@ -52,7 +53,7 @@ const signupStrategy = () => {
 				let user = await UserModel.findOne({ username: username });
 
 				if (user) {
-					logger.warn(`EL USUARIO ${email} YA EXISTE`);
+					logger.warn(`EL USUARIO ${username} YA EXISTE`);
 					return done(null, false, { message: 'EL USUARIO YA EXISTE' });
 				}
 
@@ -65,7 +66,8 @@ const signupStrategy = () => {
 
 				await newUser.save();
 
-				logger.info("NUEVO REGISTRO")
+				logger.info('NUEVO REGISTRO');
+				sendMail(newUser);
 
 				return done(null, req.body);
 			}
