@@ -1,6 +1,9 @@
 import express from 'express';
 import passport from 'passport';
-import os from 'os';
+
+import { isAdmin } from './../../middleware/admin.js';
+
+import * as UserController from './../../controllers/user.controller.js';
 
 import {
 	loginStrategy,
@@ -86,19 +89,6 @@ router.get('/logout', (req, res) => {
 	});
 });
 
-// Info
-// const info = {
-// 	SO: process.platform,
-// 	Node: process.version,
-// 	RSS: JSON.stringify(process.memoryUsage(), null, '\t'),
-// 	Path: process.execPath,
-// 	Id: process.pid,
-// 	Folder: process.cwd(),
-// 	Process: os.cpus().length,
-// };
-
-// router.get('/info', (req, res) => {
-// 	res.render('info', { info });
-// });
+router.get('/all-users', isAdmin, UserController.getUsersController);
 
 export { router as UserRouter };
