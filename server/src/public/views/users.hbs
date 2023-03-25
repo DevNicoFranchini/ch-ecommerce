@@ -1,0 +1,14 @@
+<h1>LISTA DE USUARIOS</h1>
+
+{{#if users}}
+  {{> users-table}}
+  <div class="my-4" id="productos"></div>
+{{else}}
+  <div class="alert alert-danger" role="alert">
+    No existen usuarios
+  </div>
+{{/if}}
+
+<div class="text-center">
+  <a href="/api" class="btn btn-danger mt-1">Volver a la página principal</a>
+</div>
