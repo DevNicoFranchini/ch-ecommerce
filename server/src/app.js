@@ -4,6 +4,8 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
+import favicon from 'serve-favicon';
+import path from 'path';
 
 import { URL } from 'url';
 import { sessionDB } from './config/db.config.js';
@@ -26,7 +28,8 @@ sessionDB(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + './public'));
+app.use(express.static(__dirname + 'public'));
+app.use(favicon(path.join('src/public', 'favicon.ico')));
 
 app.use(compression());
 app.use(cookieParser());
