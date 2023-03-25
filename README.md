@@ -58,11 +58,13 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
 
 - [![Node][node.js]][node-url]
 
-- [![Nodemon][nodemon.js]][nodemon-url]
+- [![Express][express.js]][express-url]
+
+- [![Mongo][mongo.js]][mongo-url]
 
 - [![NPM][npm.js]][npm-url]
 
-- [![Express][express.js]][express-url]
+- [![Nodemon][nodemon.js]][nodemon-url]
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
@@ -122,6 +124,7 @@ Nicolás Franchini - [Mail contact](mailto:devnicolasfranchini@gmail.com) - [Git
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/dev-nicolas-franchini/
 [node.js]: https://img.shields.io/badge/-NodeJs-black.svg?style=for-the-badge&logo=nodedotjs&colorB=555
@@ -130,5 +133,7 @@ Nicolás Franchini - [Mail contact](mailto:devnicolasfranchini@gmail.com) - [Git
 [nodemon-url]: https://nodemon.io/
 [npm.js]: https://img.shields.io/badge/-npm-black.svg?style=for-the-badge&logo=npm&colorB=555
 [npm-url]: https://www.npmjs.com/
-[express.js]: https://img.shields.io/badge/-Express-black.svg?style=for-the-badge&logo=express&colorB=555
+[express.js]: https://img.shields.io/badge/-ExpressJs-black.svg?style=for-the-badge&logo=express&colorB=555
 [express-url]: https://expressjs.com/es/
+[mongo.js]: https://img.shields.io/badge/-Mongo%20DB-black.svg?style=for-the-badge&logo=mongodb&colorB=555
+[mongo-url]: https://www.mongodb.com/
