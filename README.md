@@ -3,7 +3,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
   <a href="https://github.com/DevNicoFranchini/ch-ecommerce">
     <img src="./server/src/public/imgs/logo.png" alt="Logo" width="80" height="80">
@@ -18,12 +17,7 @@
   <summary>Table of Contents</summary>
   <br>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
@@ -108,7 +102,7 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
    ```sh
    nodemon src/server.js
    ```
-2. Navigate these endpoints
+2. Navigate these routes
    ```sh
    /api
    /api/users
@@ -123,9 +117,7 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
 
 ## Contact
 
-Nicolás Franchini - [devnicolasfranchini@gmail.com](mailto:devnicolasfranchini@gmail.com)
-
-Github Repo: [https://github.com/DevNicoFranchini/](https://github.com/DevNicoFranchini/)
+Nicolás Franchini - [devnicolasfranchini@gmail.com](mailto:devnicolasfranchini@gmail.com) - [https://github.com/DevNicoFranchini/](https://github.com/DevNicoFranchini/)
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
