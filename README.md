@@ -117,7 +117,7 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
 
 ## Contact
 
-Nicolás Franchini - [devnicolasfranchini@gmail.com](mailto:devnicolasfranchini@gmail.com) - [https://github.com/DevNicoFranchini/](https://github.com/DevNicoFranchini/)
+Nicolás Franchini - [Mail contact](mailto:devnicolasfranchini@gmail.com) - [Github personal repo](https://github.com/DevNicoFranchini/)
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
