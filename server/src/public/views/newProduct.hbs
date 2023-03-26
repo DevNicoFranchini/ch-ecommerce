@@ -1,0 +1,42 @@
+<div class='container pt-2'>
+	<h2 class='py-2'>Registrate aquí</h2>
+	<form method='post' action='/api/products/new'>
+		<p>
+			<input type='name' id='name' name='name' placeholder='Name' required /><i
+				class='validation'
+			><span></span><span></span></i>
+		</p>
+		<p>
+			<input type='number' id='price' name='price' placeholder='Price' required /><i
+				class='validation'
+			><span></span><span></span></i>
+		</p>
+		<p>
+			<input type='text' id='thumbnail' name='thumbnail' placeholder='Img URL' required /><i
+				class='validation'
+			><span></span><span></span></i>
+		</p>
+		<p>
+			<input type='text' id='description' name='description' placeholder='Description' required /><i
+				class='validation'
+			><span></span><span></span></i>
+		</p>
+		<p>
+			<input type='text' id='category' name='category' placeholder='Category' required /><i
+				class='validation'
+			><span></span><span></span></i>
+		</p>
+		<p>
+			<input type='number' id='stock' name='stock' placeholder='Stock' required /><i
+				class='validation'
+			><span></span><span></span></i>
+		</p>
+		<p>
+			¿Ya tienes una cuenta?
+			<a href='/login'>Inicia sesión aquí</a>
+		</p>
+		<p>
+			<input type='submit' id='newProduct' value='New Product' />
+		</p>
+	</form>
+</div>
