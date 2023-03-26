@@ -5,7 +5,7 @@ import {
 	updateProductById,
 	deleteProducts,
 	deleteProductsById,
-} from './../models/services/product.service.js';
+} from './../services/product.service.js';
 
 export const getProductsController = async (req, res) => {
 	try {

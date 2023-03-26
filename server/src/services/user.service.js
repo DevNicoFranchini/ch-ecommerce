@@ -1,5 +1,5 @@
-import { getApiDao } from './../index.models.js';
-import { options } from './../../config/options.config.js';
+import { getApiDao } from './../models/index.models.js';
+import { options } from './../config/options.config.js';
 
 const { UserDaoContainer } = await getApiDao(options.server.dbType);
 

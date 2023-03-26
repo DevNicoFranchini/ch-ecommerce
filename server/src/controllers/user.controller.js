@@ -5,7 +5,7 @@ import {
 	updateById,
 	deleteUsers,
 	deleteUsersById,
-} from './../models/services/user.service.js';
+} from './../services/user.service.js';
 
 export const getUsersController = async (req, res) => {
 	try {
