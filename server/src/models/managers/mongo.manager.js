@@ -1,5 +1,3 @@
-import { convertToDto } from './../dto/user.dto.js';
-
 class MongoContainer {
 	constructor(model) {
 		this.model = model;
@@ -9,8 +7,8 @@ class MongoContainer {
 		try {
 			const response = await this.model.findById(id);
 			const data = JSON.parse(JSON.stringify(response));
-			const responseDto = convertToDto(data);
-			return responseDto;
+
+			return data;
 		} catch (error) {
 			throw new Error(`HUBO UN ERROR AL BUSCAR POR ID. EL ERROR ES: ${error}`);
 		}
@@ -20,8 +18,8 @@ class MongoContainer {
 		try {
 			const response = await this.model.find();
 			const data = JSON.parse(JSON.stringify(response));
-			const responseDto = convertToDto(data);
-			return responseDto;
+
+			return data;
 		} catch (error) {
 			throw new Error(`HUBO UN ERROR AL BUSCAR TODOS. EL ERROR ES: ${error}`);
 		}
@@ -55,14 +53,14 @@ class MongoContainer {
 		}
 	}
 
-    async deleteAll() {
-        try {
-            await this.model.delete();
-            return 'ELIMINADOS SATISFACTORIAMENTE';
-        } catch (error) {
-            throw new Error(`HUBO UN ERROR AL ELIMINAR TODOS. EL ERROR ES: ${error}`);
-        }
-    }
+	async deleteAll() {
+		try {
+			await this.model.delete();
+			return 'ELIMINADOS SATISFACTORIAMENTE';
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL ELIMINAR TODOS. EL ERROR ES: ${error}`);
+		}
+	}
 }
 
 export { MongoContainer };
