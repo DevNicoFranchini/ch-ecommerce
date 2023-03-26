@@ -9,7 +9,7 @@ import {
 
 export const getProductsController = async (req, res) => {
 	try {
-		const username = req.session.passport.user.username
+		const username = req.session.passport.user.username;
 		const products = await getProducts();
 		res.status(200).render('products', { products, username });
 	} catch (error) {
@@ -19,8 +19,10 @@ export const getProductsController = async (req, res) => {
 
 export const saveProductController = async (req, res) => {
 	try {
+		const username = req.session.passport.user.username;
 		const product = await saveProduct(req.body);
-		res.status(200).json({ data: product });
+		const products = await getProducts();
+		res.status(200).render('products', { products, username });
 	} catch (error) {
 		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
 	}

@@ -7,7 +7,8 @@ import * as ProductController from './../../controllers/products.controller.js';
 const router = express.Router();
 
 router.get('/new', isAdmin, (req, res) => {
-	res.render('newProduct');
+	const username = req.session.passport.user.username;
+	res.render('newProduct', { username });
 });
 
 router.get('/', ProductController.getProductsController);
