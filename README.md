@@ -105,12 +105,21 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
    nodemon src/server.js
    ```
 2. Navigate these routes
+
    ```sh
+
+   Para los usuarios:
+
    /api
-   /api/users
-   /api/users/login
-   /api/users/signup
-   /api/products
+   /api/users/login para iniciar sesión.
+   /api/users/signup para registrarse.
+   /api/products para ver todos los productos disponibles.
+
+   Para el usuario administrador:
+
+   /api/users/all-users para ver el listado de usuarios registrados.
+   /api/products/new para agregar un nuevo producto a la base de datos.
+
    ```
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
