@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Title</th>
+          <th scope="col">Name</th>
           <th scope="col">Price</th>
           <th scope="col">Image</th>
         </tr>
@@ -12,8 +12,8 @@
       <tbody>
         {{#each products}}
           <tr>
-            <td>{{this.id}}</td>
-            <td>{{this.title}}</td>
+            <td>{{this._id}}</td>
+            <td>{{this.name}}</td>
             <td>${{this.price}}</td>
             <td><img src={{this.thumbnail}} alt="" width="50" /></td>
           </tr>
