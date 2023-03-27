@@ -72,7 +72,22 @@ class MongoContainer {
 				return false;
 			}
 		} catch (error) {
-			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE. EL ERROR ES: ${error}`);
+			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE EL NOMBRE. EL ERROR ES: ${error}`);
+		}
+	}
+
+	async existsEmail(email) {
+		try {
+			console.log('EMAIL MANAGER --> ', email);
+			const result = await this.model.findOne({ email: email }).select('email').lean();
+
+			if (!(result == null)) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE EL EMAIL. EL ERROR ES: ${error}`);
 		}
 	}
 }
