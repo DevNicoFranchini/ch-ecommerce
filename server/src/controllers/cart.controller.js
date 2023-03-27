@@ -1,4 +1,4 @@
-import { existsCart, saveCart } from './../services/cart.service.js';
+import { existsCart, getCarts, saveCart } from './../services/cart.service.js';
 
 export const existsCartController = async (req, res, next) => {
 	try {
@@ -49,3 +49,13 @@ export const existsCartController = async (req, res, next) => {
 // 			.json({ message: `HUBO UN ERROR AL AÑADIR EL PRODUCTO AL CARRITO. EL ERROR FUE: ${error}` });
 // 	}
 // };
+
+export const getCartsController = async (req, res) => {
+	try {
+		const username = req.session.passport.user.username;
+		const carts = await getCarts();
+		res.status(200).json(carts);
+	} catch (error) {
+		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
+	}
+};

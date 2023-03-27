@@ -6,8 +6,8 @@ import * as CartController from './../../controllers/cart.controller.js';
 
 const router = express.Router();
 
-
 // router.post('/new', CartController.saveCartController)
 router.post('/', CartController.existsCartController);
+router.get('/all-carts', CartController.getCartsController);
 
 export { router as CartRouter };
