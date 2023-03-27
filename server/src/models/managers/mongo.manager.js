@@ -61,6 +61,20 @@ class MongoContainer {
 			throw new Error(`HUBO UN ERROR AL ELIMINAR TODOS. EL ERROR ES: ${error}`);
 		}
 	}
+
+	async exists(name) {
+		try {
+			const result = await this.model.findOne({ name: name }).select('name').lean();
+
+			if (!(result == null)) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE. EL ERROR ES: ${error}`);
+		}
+	}
 }
 
 export { MongoContainer };
