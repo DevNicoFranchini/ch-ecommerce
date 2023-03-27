@@ -39,7 +39,7 @@ export const updateProductController = async (req, res) => {
 	try {
 		const product = await updateById(req.body, req.params.id);
 		const products = await getProducts();
-		res.status(200).render('products', { products });
+		res.status(200).render('users', { products });
 	} catch (error) {
 		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
 	}
