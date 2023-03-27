@@ -26,3 +26,7 @@ export const deleteProducts = async () => {
 export const deleteProductsById = async (id) => {
 	return await ProductDaoContainer.deleteById(id);
 };
+
+export const existsProduct = async (name) => {
+	return await ProductDaoContainer.exists(name);
+};

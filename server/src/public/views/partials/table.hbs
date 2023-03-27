@@ -1,24 +1,28 @@
-<div class="card">
-  <div class="card-body">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Image</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each products}}
-          <tr>
-            <td>{{this._id}}</td>
-            <td>{{this.name}}</td>
-            <td>${{this.price}}</td>
-            <td><img src={{this.thumbnail}} alt="" width="50" /></td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+<div class='card'>
+	<div class='card-body'>
+		<table class='table'>
+			<thead>
+				<tr>
+					<th scope='col'>ID</th>
+					<th scope='col'>Name</th>
+					<th scope='col'>Price</th>
+					<th scope='col'>Image</th>
+					<th scope='col'>Add to cart</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each products}}
+					<tr>
+						<td>{{this._id}}</td>
+						<td>{{this.name}}</td>
+						<td>${{this.price}}</td>
+						<td><img src={{this.thumbnail}} alt='' width='50' /></td>
+						<td><p>
+								<input type='submit' id='addProduct' value='Add to cart' />
+							</p></td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
 </div>
