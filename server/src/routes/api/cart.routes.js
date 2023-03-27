@@ -8,6 +8,6 @@ const router = express.Router();
 
 // router.post('/new', CartController.saveCartController)
 router.post('/', CartController.existsCartController);
-router.get('/all-carts', CartController.getCartsController);
+router.get('/all-carts', isAdmin, CartController.getCartsController);
 
 export { router as CartRouter };

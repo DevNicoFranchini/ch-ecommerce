@@ -54,7 +54,11 @@ export const getCartsController = async (req, res) => {
 	try {
 		const username = req.session.passport.user.username;
 		const carts = await getCarts();
-		res.status(200).json(carts);
+		if (carts.length !== 0) {
+			res.status(200).json(carts);
+		} else {
+			res.status(200).json({ message: 'NO HAY CARRITOS' });
+		}
 	} catch (error) {
 		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
 	}
