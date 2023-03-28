@@ -1,21 +1,33 @@
-import { existsCart, getCarts, saveCart } from './../services/cart.service.js';
+import { existsCart, getCarts, getCartByEmail, saveCart } from './../services/cart.service.js';
 
 export const existsCartController = async (req, res, next) => {
 	try {
 		const username = req.session.passport.user.username;
 		const exists = await existsCart(username);
 
-		console.log('EMAIL CONTROLLER --> ', username);
-		console.log('EXISTE EL EMAIL? --> ', exists);
-
 		if (exists) {
-			res.status(200).json({ message: `EL USUARIO YA TIENE CARRITO` });
+			const cart = await getCartByEmail(username);
+			res.status(200).json({ cart });
 		} else {
 			const newCart = await saveCart({
 				products: [
 					{
+						_id: '641fb162c478786bd93cd49a',
+						name: 'Torta',
+						price: 10,
+						thumbnail: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBQUFBcUFB',
+						description: 'Torta',
+						category: 'Tortas',
+						stock: 10,
+					},
+					{
 						_id: '641fb0e6c478786bd93cd498',
 						name: 'Galleta',
+						price: 50,
+						thumbnail: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBQUFBcUFB',
+						description: 'Galleta',
+						category: 'Galletas',
+						stock: 5,
 					},
 				],
 				email: username,
