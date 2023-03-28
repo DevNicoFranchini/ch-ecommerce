@@ -14,6 +14,17 @@ class MongoContainer {
 		}
 	}
 
+	async getByEmail(email) {
+		try {
+			const response = await this.model.findOne({ email: email }).select('email').lean();
+			const data = JSON.parse(JSON.stringify(response));
+
+			return data;
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL BUSCAR POR EMAIL. EL ERROR ES: ${error}`);
+		}
+	}
+
 	async getAll() {
 		try {
 			const response = await this.model.find();
@@ -78,7 +89,6 @@ class MongoContainer {
 
 	async existsEmail(email) {
 		try {
-			console.log('EMAIL MANAGER --> ', email);
 			const result = await this.model.findOne({ email: email }).select('email').lean();
 
 			if (!(result == null)) {
