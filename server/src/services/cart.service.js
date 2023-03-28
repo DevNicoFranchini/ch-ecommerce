@@ -3,10 +3,9 @@ import { options } from './../config/options.config.js';
 
 const { CartDaoContainer } = await getApiDao(options.server.dbType);
 
-export const existsCart = async(email) => {
-	console.log('EMAIL SERVICE --> ', email);
+export const existsCart = async (email) => {
 	return await CartDaoContainer.existsEmail(email);
-}
+};
 
 export const saveCart = async (body) => {
 	return await CartDaoContainer.save(body);
@@ -18,6 +17,10 @@ export const getCarts = async () => {
 
 export const getCartById = async (id) => {
 	return await CartDaoContainer.getById(id);
+};
+
+export const getCartByEmail = async (email) => {
+	return await CartDaoContainer.getByEmail(email);
 };
 
 export const updateCartById = async (body, id) => {
