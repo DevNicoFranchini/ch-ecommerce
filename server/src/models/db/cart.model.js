@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
+import { productSchema } from './product.model.js';
 
 const cartCollection = 'carts';
 
 const cartSchema = new mongoose.Schema(
 	{
 		products: {
-			type: [{ type: String, required: true }],
+			type: [{ type: productSchema, required: true }],
 			required: true,
 		},
 		email: {
