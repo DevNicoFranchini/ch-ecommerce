@@ -1,10 +1,11 @@
 import express from 'express';
+import favicon from 'serve-favicon';
+import robots from 'express-robots-txt';
 import handlebars from 'express-handlebars';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
-import favicon from 'serve-favicon';
 import path from 'path';
 
 import { URL } from 'url';
@@ -37,6 +38,14 @@ app.use(
 	cors({
 		origin: 'http://localhost:8080',
 		methods: ['GET'],
+	})
+);
+app.use(
+	robots({
+		UserAgent: '*',
+		Disallow: '/',
+		CrawlDelay: '5',
+		Sitemap: '',
 	})
 );
 

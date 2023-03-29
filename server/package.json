@@ -21,6 +21,7 @@
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
 		"express-handlebars": "^7.0.4",
+		"express-robots-txt": "^1.0.0",
 		"express-session": "^1.17.3",
 		"log4js": "^6.9.1",
 		"minimist": "^1.2.8",
