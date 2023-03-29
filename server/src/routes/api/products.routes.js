@@ -12,6 +12,7 @@ router.get('/new', isAdmin, (req, res) => {
 });
 
 router.get('/', ProductController.getProductsController);
+router.get('/:category', ProductController.getProductsByCategoryController);
 router.post('/new', isAdmin, ProductController.saveProductController);
 
 export { router as ProductsRouter };

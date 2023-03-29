@@ -15,6 +15,10 @@ export const getProductsById = async (id) => {
 	return await ProductDaoContainer.getById(id);
 };
 
+export const getProductsByCategory = async (category) => {
+	return await ProductDaoContainer.getByCategory(category);
+};
+
 export const updateProductById = async (body, id) => {
 	return await ProductDaoContainer.updateById(body, id);
 };

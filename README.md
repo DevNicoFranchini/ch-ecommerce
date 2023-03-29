@@ -114,6 +114,7 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
    /api/users/login para iniciar sesión.
    /api/users/signup para registrarse.
    /api/products para ver todos los productos disponibles.
+   /api/products/:category para ver todos los productos disponibles en la categoría.
    /api/cart para ver tu carrito. - Si esta vacio, agrega un producto por defecto en este momento -
    /api/cart/delete para eliminar tu carrito.
 

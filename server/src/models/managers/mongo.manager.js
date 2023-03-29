@@ -25,6 +25,17 @@ class MongoContainer {
 		}
 	}
 
+	async getByCategory(category) {
+		try {
+			const response = await this.model.find({ category: category }).select().lean();
+			const data = JSON.parse(JSON.stringify(response));
+
+			return data;
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL BUSCAR POR CATEGORÍA. EL ERROR ES: ${error}`);
+		}
+	}
+
 	async getAll() {
 		try {
 			const response = await this.model.find();

@@ -2,6 +2,7 @@ import {
 	saveProduct,
 	getProducts,
 	getProductsById,
+	getProductsByCategory,
 	updateProductById,
 	deleteProducts,
 	deleteProductsById,
@@ -12,6 +13,17 @@ export const getProductsController = async (req, res) => {
 	try {
 		const username = req.session.passport.user.username;
 		const products = await getProducts();
+		res.status(200).render('products', { products, username });
+	} catch (error) {
+		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
+	}
+};
+
+export const getProductsByCategoryController = async (req, res) => {
+	try {
+		const username = req.session.passport.user.username;
+		const category = req.params.category;
+		const products = await getProductsByCategory(category);
 		res.status(200).render('products', { products, username });
 	} catch (error) {
 		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
