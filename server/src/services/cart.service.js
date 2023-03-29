@@ -27,6 +27,10 @@ export const updateCartById = async (body, id) => {
 	return await CartDaoContainer.updateById(body, id);
 };
 
+export const deleteCart = async (email) => {
+	return await CartDaoContainer.deleteOne(email);
+};
+
 export const deleteCarts = async () => {
 	return await CartDaoContainer.deleteAll();
 };

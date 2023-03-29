@@ -55,6 +55,15 @@ class MongoContainer {
 		}
 	}
 
+	async deleteOne(email) {
+		try {
+			await this.model.deleteOne({ email: email });
+			return 'ELIMINADO SATISFACTORIAMENTE';
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL ELIMINAR. EL ERROR ES: ${error}`);
+		}
+	}
+
 	async deleteById(id) {
 		try {
 			await this.model.findByIdAndDelete(id);
@@ -66,7 +75,7 @@ class MongoContainer {
 
 	async deleteAll() {
 		try {
-			await this.model.delete();
+			await this.model.deleteAll();
 			return 'ELIMINADOS SATISFACTORIAMENTE';
 		} catch (error) {
 			throw new Error(`HUBO UN ERROR AL ELIMINAR TODOS. EL ERROR ES: ${error}`);

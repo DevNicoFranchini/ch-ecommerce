@@ -8,6 +8,7 @@ const router = express.Router();
 
 // router.post('/new', CartController.saveCartController)
 router.get('/', CartController.existsCartController);
+router.get('/delete', CartController.deleteCartController);
 router.get('/all-carts', isAdmin, CartController.getCartsController);
 
 export { router as CartRouter };
