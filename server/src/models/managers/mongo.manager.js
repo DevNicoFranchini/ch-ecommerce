@@ -7,7 +7,6 @@ class MongoContainer {
 		try {
 			const response = await this.model.findById(id);
 			const data = JSON.parse(JSON.stringify(response));
-
 			return data;
 		} catch (error) {
 			throw new Error(`HUBO UN ERROR AL BUSCAR POR ID. EL ERROR ES: ${error}`);
@@ -16,7 +15,7 @@ class MongoContainer {
 
 	async getByEmail(email) {
 		try {
-			const response = await this.model.findOne({ email: email }).select('email').lean();
+			const response = await this.model.findOne({ email: email }).select().lean();
 			const data = JSON.parse(JSON.stringify(response));
 
 			return data;
