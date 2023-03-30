@@ -104,23 +104,27 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
    ```sh
    nodemon src/server.js
    ```
-2. Navigate these routes
+2. Try these routes
 
    ```sh
 
-   Para los usuarios:
+   Para todos los usuarios:
 
    /api
    /api/users/login para iniciar sesión.
    /api/users/signup para registrarse.
+   /api/users/logout para cerrar sesión.
    /api/products para ver todos los productos disponibles.
-   /api/products/:category para ver todos los productos disponibles en la categoría.
+   /api/products/product/:id para ver un producto en específico.
+   /api/products/category/:category para ver todos los productos disponibles en la categoría.
    /api/cart para ver tu carrito. - Si esta vacio, agrega un producto por defecto en este momento -
    /api/cart/delete para eliminar tu carrito.
 
    Para el usuario administrador:
 
    /api/users/all-users para ver el listado de usuarios registrados.
+   /api/users/new-user para agregar un nuevo usuario.
+   /api/users/update-user/:id para editar un usuario existente.
    /api/products/new para agregar un nuevo producto a la base de datos.
    /api/cart/all-carts para ver todos los carritos.
    ```
