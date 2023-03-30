@@ -10,8 +10,8 @@ import {
 } from './../services/product.service.js';
 
 export const getProductsController = async (req, res) => {
+	const username = req.session.passport.user.username;
 	try {
-		const username = req.session.passport.user.username;
 		const products = await getProducts();
 		res.status(200).render('products', { products, username });
 	} catch (error) {
@@ -19,20 +19,31 @@ export const getProductsController = async (req, res) => {
 	}
 };
 
-export const getProductsByCategoryController = async (req, res) => {
+export const getProductsByIdController = async (req, res) => {
+	const username = req.session.passport.user.username;
+	const id = req.params.id;
 	try {
-		const username = req.session.passport.user.username;
-		const category = req.params.category;
+		const products = await getProductsById(id);
+		res.status(200).json(products);
+	} catch (error) {
+		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
+	}
+};
+
+export const getProductsByCategoryController = async (req, res) => {
+	const username = req.session.passport.user.username;
+	const category = req.params.category;
+	try {
 		const products = await getProductsByCategory(category);
-		res.status(200).render('products', { products, username });
+		res.status(200).json(products);
 	} catch (error) {
 		res.status(400).json({ message: `HUBO UN ERROR. EL ERROR FUE: ${error}` });
 	}
 };
 
 export const saveProductController = async (req, res, next) => {
+	const username = req.session.passport.user.username;
 	try {
-		const username = req.session.passport.user.username;
 		const exists = await existsProduct(req.body.name);
 
 		if (exists) {
