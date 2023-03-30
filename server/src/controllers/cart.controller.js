@@ -9,7 +9,6 @@ import {
 export const existsCartController = async (req, res, next) => {
 	try {
 		const username = req.session.passport.user.username;
-		console.log('el username es --> ', req.session.passport.user.username);
 		const exists = await existsCart(username);
 
 		if (exists) {
@@ -48,27 +47,6 @@ export const existsCartController = async (req, res, next) => {
 	}
 };
 
-// export const saveToCartController = async (req, res, next) => {
-//     try {
-// 		const username = req.session.passport.user.username;
-// 		const existsCart = await existsCart(username);
-//         const existsProduct = await exists(req.body.name)
-
-// 		console.log('EMAIL CONTROLLER --> ', username);
-// 		console.log('EXISTE EL EMAIL? --> ', existsCart);
-
-// 		if (existsCart && existsProduct) {
-//             const product = await saveProduct(req.body);
-// 		} else {
-// 			next();
-// 		}
-// 	} catch (error) {
-// 		res
-// 			.status(400)
-// 			.json({ message: `HUBO UN ERROR AL AÑADIR EL PRODUCTO AL CARRITO. EL ERROR FUE: ${error}` });
-// 	}
-// };
-
 export const getCartsController = async (req, res) => {
 	try {
 		const username = req.session.passport.user.username;
@@ -84,8 +62,9 @@ export const getCartsController = async (req, res) => {
 };
 
 export const deleteCartController = async (req, res) => {
+	const username = req.session.passport.user.username
 	try {
-		await deleteCart(req.session.passport.user.username);
+		await deleteCart(username);
 		res.status(200).json({ message: `CARRITO ELIMINADO SATISFACTORIAMENTE` });
 	} catch (error) {
 		res
