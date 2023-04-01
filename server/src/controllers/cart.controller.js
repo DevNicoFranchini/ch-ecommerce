@@ -15,30 +15,7 @@ export const existsCartController = async (req, res, next) => {
 			const cart = await getCartByEmail(username);
 			res.status(200).json({ cart });
 		} else {
-			const newCart = await saveCart({
-				products: [
-					{
-						_id: '641fb162c478786bd93cd49a',
-						name: 'Torta',
-						price: 10,
-						thumbnail: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBQUFBcUFB',
-						description: 'Torta',
-						category: 'Tortas',
-						stock: 10,
-					},
-					{
-						_id: '641fb0e6c478786bd93cd498',
-						name: 'Galleta',
-						price: 50,
-						thumbnail: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBQUFBcUFB',
-						description: 'Galleta',
-						category: 'Galletas',
-						stock: 5,
-					},
-				],
-				email: username,
-			});
-			res.json(newCart);
+			res.status(200).json({ message: 'EL CARRITO ESTÁ VACÍO' });
 		}
 	} catch (error) {
 		res
@@ -62,7 +39,7 @@ export const getCartsController = async (req, res) => {
 };
 
 export const deleteCartController = async (req, res) => {
-	const username = req.session.passport.user.username
+	const username = req.session.passport.user.username;
 	try {
 		await deleteCart(username);
 		res.status(200).json({ message: `CARRITO ELIMINADO SATISFACTORIAMENTE` });
