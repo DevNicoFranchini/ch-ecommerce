@@ -7,6 +7,8 @@ import {
 	saveCart,
 	updateCartById,
 	updateCartByEmail,
+	existsProductInTheCart,
+	updateProductInCart,
 } from './../services/cart.service.js';
 
 export const existsCartController = async (req, res, next) => {
@@ -55,25 +57,31 @@ export const deleteCartController = async (req, res) => {
 export const addProductCartController = async (req, res) => {
 	const username = req.session.passport.user.username;
 	const productId = req.params.id;
+
 	try {
 		const existCart = await existsCart(username);
 		const existProduct = await existsProductById(productId);
 
 		if (existCart && existProduct) {
-			const product = await getProductsById(productId);
-
 			const cart = await getCartByEmail(username);
-			cart.products.push(product);
+			const existsProductInCart = await existsProductInTheCart(username, productId);
 
-			const cartUpdated = await updateCartByEmail(cart, username);
-
-			res.status(200).json({ cartUpdated });
+			if (existsProductInCart) {
+				const cartUpdated = await updateProductInCart(username, productId);
+				res.status(200).json({ cartUpdated });
+			} else {
+				const product = await getProductsById(productId);
+				cart.products.push({ name: product.name, cantidad: 1, _id: productId });
+				const cartUpdated = await updateCartByEmail(cart, username);
+				res.status(200).json({ cartUpdated });
+			}
 		} else if (!existCart && existProduct) {
 			const product = await getProductsById(productId);
 			const newCart = await saveCart({
-				products: [product],
+				products: [{ name: product.name, cantidad: 1, _id: productId }],
 				email: username,
 			});
+
 			res.status(200).json(newCart);
 		} else if (!existProduct) {
 			res.status(409).json({ message: `EL PRODUCTO NO EXISTE` });
