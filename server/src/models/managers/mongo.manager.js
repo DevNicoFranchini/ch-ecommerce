@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 class MongoContainer {
 	constructor(model) {
 		this.model = model;
@@ -65,6 +67,15 @@ class MongoContainer {
 		}
 	}
 
+	async updateByEmail(body, email) {
+		try {
+			const data = await this.model.updateOne({ email: email }, { $set: body });
+			return 'ACTUALIZADO SATISFACTORIAMENTE';
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL ACTUALIZAR POR EMAIL. EL ERROR ES: ${error}`);
+		}
+	}
+
 	async deleteOne(email) {
 		try {
 			await this.model.deleteOne({ email: email });
@@ -94,7 +105,7 @@ class MongoContainer {
 
 	async exists(name) {
 		try {
-			const result = await this.model.findOne({ name: name }).select('name').lean();
+			const result = await this.model.findOne({ name: name }).select().lean();
 
 			if (!(result == null)) {
 				return true;
@@ -103,6 +114,23 @@ class MongoContainer {
 			}
 		} catch (error) {
 			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE EL NOMBRE. EL ERROR ES: ${error}`);
+		}
+	}
+
+	async existsId(id) {
+		try {
+			if (mongoose.isValidObjectId(id)) {
+				const result = await this.model.findOne({ _id: id }).select().lean();
+				if (!(result == null)) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE EL ID. EL ERROR ES: ${error}`);
 		}
 	}
 
