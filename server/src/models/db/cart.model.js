@@ -6,7 +6,22 @@ const cartCollection = 'carts';
 const cartSchema = new mongoose.Schema(
 	{
 		products: {
-			type: [{ type: productSchema, required: true }],
+			type: [
+				{
+					name: {
+						type: String,
+						required: true,
+					},
+					cantidad: {
+						type: Number,
+						required: true,
+					},
+				},
+				{
+					_id: String,
+					timestamps: true,
+				},
+			],
 			required: true,
 		},
 		email: {
@@ -15,6 +30,7 @@ const cartSchema = new mongoose.Schema(
 		},
 	},
 	{
+		_id: String,
 		timestamps: true,
 	}
 );
