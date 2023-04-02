@@ -33,6 +33,7 @@ export const productSchema = new mongoose.Schema(
 		},
 	},
 	{
+		_id: String,
 		timestamps: true,
 	}
 );
