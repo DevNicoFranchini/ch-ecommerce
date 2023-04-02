@@ -38,13 +38,42 @@ class CartMongoDao extends MongoContainer {
 				const productsInCart = cart.products;
 
 				const product = await productsInCart.find((product) => product._id == productId);
-				
+
 				const data = await CartModel.findOneAndUpdate(
 					{ email: cartEmail, 'products._id': productId },
 					{ $set: { 'products.$.cantidad': (product.cantidad += 1) } },
 					{ new: true }
 				);
 				return data;
+			}
+		} catch (error) {
+			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE EL ID. EL ERROR ES: ${error}`);
+		}
+	}
+
+	async deleteProductInCartById(cartEmail, productId) {
+		try {
+			if (mongoose.isValidObjectId(productId)) {
+				const cart = await CartModel.findOne({ email: cartEmail }).select().lean();
+				const productsInCart = cart.products;
+
+				const product = await productsInCart.find((product) => product._id == productId);
+
+				if (product.cantidad > 1) {
+					const data = await CartModel.findOneAndUpdate(
+						{ email: cartEmail, 'products._id': productId },
+						{ $set: { 'products.$.cantidad': (product.cantidad -= 1) } },
+						{ new: true }
+					);
+					return data;
+				} else {
+					const data = await CartModel.findOneAndUpdate(
+						{ email: cartEmail },
+						{ $pull: { products: { _id: productId, cantidad: 1 } } },
+						{ new: true }
+					);
+					return data;
+				}
 			}
 		} catch (error) {
 			throw new Error(`HUBO UN ERROR AL VALIDAR SI EXISTE EL ID. EL ERROR ES: ${error}`);

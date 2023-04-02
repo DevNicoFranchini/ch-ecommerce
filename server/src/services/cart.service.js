@@ -43,6 +43,10 @@ export const deleteCart = async (email) => {
 	return await CartDaoContainer.deleteOne(email);
 };
 
+export const deleteProductInCart = async (cartEmail, productId) => {
+	return await CartDaoContainer.deleteProductInCartById(cartEmail, productId);
+};
+
 export const deleteCarts = async () => {
 	return await CartDaoContainer.deleteAll();
 };

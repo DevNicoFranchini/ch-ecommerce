@@ -9,6 +9,7 @@ import {
 	updateCartByEmail,
 	existsProductInTheCart,
 	updateProductInCart,
+	deleteProductInCart,
 } from './../services/cart.service.js';
 
 export const existsCartController = async (req, res, next) => {
@@ -18,9 +19,11 @@ export const existsCartController = async (req, res, next) => {
 
 		if (exists) {
 			const cart = await getCartByEmail(username);
-			res.status(200).json({ cart });
-		} else {
-			res.status(200).json({ message: 'EL CARRITO ESTÁ VACÍO' });
+			if (cart.products.length == 0) {
+				res.status(200).json({ message: 'EL CARRITO ESTÁ VACÍO' });
+			} else {
+				res.status(200).json({ cart });
+			}
 		}
 	} catch (error) {
 		res
@@ -83,6 +86,40 @@ export const addProductCartController = async (req, res) => {
 			});
 
 			res.status(200).json(newCart);
+		} else if (!existProduct) {
+			res.status(409).json({ message: `EL PRODUCTO NO EXISTE` });
+		}
+	} catch (error) {
+		res
+			.status(400)
+			.json({ message: `HUBO UN ERROR AL ACTUALIZAR EL CARRITO. EL ERROR FUE: ${error}` });
+	}
+};
+
+export const deleteProductCartController = async (req, res) => {
+	const username = req.session.passport.user.username;
+	const productId = req.params.id;
+
+	try {
+		const existCart = await existsCart(username);
+		const existProduct = await existsProductById(productId);
+
+		if (existCart && existProduct) {
+			const existsProductInCart = await existsProductInTheCart(username, productId);
+
+			if (existsProductInCart) {
+				const cartUpdated = await deleteProductInCart(username, productId);
+				if (cartUpdated.products.length == 0) {
+					await deleteCart(username);
+					res.status(200).json({ message: 'EL CARRITO ESTÁ VACÍO' });
+				} else {
+					res.status(200).json({ cartUpdated });
+				}
+			} else {
+				res.status(409).json({ message: `EL PRODUCTO NO EXISTE EN EL CARRITO` });
+			}
+		} else if (!existCart) {
+			res.status(409).json({ message: `EL CARRITO ESTÁ VACÍO` });
 		} else if (!existProduct) {
 			res.status(409).json({ message: `EL PRODUCTO NO EXISTE` });
 		}
