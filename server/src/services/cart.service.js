@@ -7,6 +7,10 @@ export const existsCart = async (email) => {
 	return await CartDaoContainer.existsEmail(email);
 };
 
+export const existsProductInTheCart = async (cartEmail, productId) => {
+	return await CartDaoContainer.existsProductInCartById(cartEmail, productId);
+};
+
 export const saveCart = async (body) => {
 	return await CartDaoContainer.save(body);
 };
@@ -29,6 +33,10 @@ export const updateCartById = async (body, id) => {
 
 export const updateCartByEmail = async (body, email) => {
 	return await CartDaoContainer.updateByEmail(body, email);
+};
+
+export const updateProductInCart = async (cartEmail, productId) => {
+	return await CartDaoContainer.updateProductInCartById(cartEmail, productId);
 };
 
 export const deleteCart = async (email) => {
