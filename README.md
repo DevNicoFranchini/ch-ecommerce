@@ -120,6 +120,7 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
    /api/cart para ver tu carrito.
    /api/cart/add/:id para añadir un producto al carrito.
    /api/cart/delete para eliminar tu carrito.
+   /api/cart/delete/:id para eliminar un producto del carrito.
 
    Para el usuario administrador:
 
