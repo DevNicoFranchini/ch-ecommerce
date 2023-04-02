@@ -117,7 +117,8 @@ Esta sección enumera los principales frameworks/librerías utilizados para inic
    /api/products para ver todos los productos disponibles.
    /api/products/product/:id para ver un producto en específico.
    /api/products/category/:category para ver todos los productos disponibles en la categoría.
-   /api/cart para ver tu carrito. - Si esta vacio, agrega un producto por defecto en este momento -
+   /api/cart para ver tu carrito.
+   /api/cart/add/:id para añadir un producto al carrito.
    /api/cart/delete para eliminar tu carrito.
 
    Para el usuario administrador:
