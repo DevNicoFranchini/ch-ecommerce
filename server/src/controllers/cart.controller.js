@@ -19,11 +19,9 @@ export const existsCartController = async (req, res, next) => {
 
 		if (exists) {
 			const cart = await getCartByEmail(username);
-			if (cart.products.length == 0) {
-				res.status(200).json({ message: 'EL CARRITO ESTÁ VACÍO' });
-			} else {
-				res.status(200).json({ cart });
-			}
+			res.status(200).json({ cart });
+		} else {
+			res.status(200).json({ message: 'EL CARRITO ESTÁ VACÍO' });
 		}
 	} catch (error) {
 		res
